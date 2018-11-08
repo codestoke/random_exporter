@@ -3,14 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
-	"net/http"
-	"os"
-	"time"
-
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	prometheusVersion "github.com/prometheus/common/version"
+	"log"
+	"net/http"
+	"os"
 
 	"random_exporter/collector"
 )
@@ -33,7 +31,7 @@ type Exporter struct {
 	Client *collector.RandomClient
 }
 
-func NewExporter(interval time.Duration) (*Exporter, error) {
+func NewExporter() (*Exporter, error) {
 	log.Println(int10)
 
 	exp := Exporter{
@@ -72,7 +70,7 @@ func main() {
 		fmt.Println("random value exporter version " + "0.0.1")
 	}
 
-	exporter, err := NewExporter(time.Second * 60)
+	exporter, err := NewExporter()
 	if err != nil {
 		log.Fatal("no exporter")
 		os.Exit(1)
